@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahro Fitriyah</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            color: #ff66b2;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 48px;
+            color: #ff4081;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+        .heart {
+            font-size: 100px;
+            color: #ff1744;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0%, 20%, 50%, 80%, 100% { transform: scale(1); }
+            40% { transform: scale(1.2); }
+            60% { transform: scale(0.9); }
+        }
+
+        .button-love {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 20px;
+            color: white;
+            background-color: #ff66b2;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button-love:hover {
+            background-color: #ff4081;
+        }
+
+        /* Sembunyikan iframe */
+        #player {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        /* Gaya Slideshow */
+        .slideshow-container {
+            display: none; /* Awalnya disembunyikan */
+            position: relative;
+            max-width: 80%;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌟 Assalammualaikum Zahrooooo ❤️ 🌟</h1>
+    <p>Semangat yahh buat Proposal Skripsinya 😊</p>
+    <p class="heart">💖</p>
+
+    <button id="loveButton" class="button-love" onclick="startMusic()">Klik untuk lanjutkan</button>
+
+    <!-- Pemutar YouTube -->
+    <div id="player"></div>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container" id="slideshow">
+        <div class="slide">
+    <img src="https://drive.google.com/uc?id=1SiUVEJe0uHK5kQruGfPSL97BCH4Nc9aX" alt="Gambar 1">
+</div>
+<div class="slide">
+    <img src="https://drive.google.com/uc?id=1SWYzXzalhu7KU19Hng2xQAvxDXL1_cjI" alt="Gambar 2">
+</div>
+<div class="slide">
+    <img src="https://drive.google.com/uc?id=1S_QRPPLjMN18fdf9AtavaR-l3XNKuw-g" alt="Gambar 3">
+</div>
+
+    </div>
+
+    <script>
+        function startMusic() {
+            // Tampilkan pesan cinta
+            alert('Aku cinta kamu selamanya! ❤️');
+
+            // Hilangkan tombol setelah diklik
+            document.getElementById("loveButton").style.display = "none";
+
+            // Load YouTube API
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player;
+
+            // Fungsi yang dipanggil setelah API YouTube siap
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('player', {
+                    videoId: 'r6tXNPgACuc', // ID Video YouTube
+                    playerVars: {
+                        'autoplay': 1,
+                        'mute': 0, // Suara langsung nyala
+                        'loop': 1, // Ulangi terus
+                        'playlist': 'r6tXNPgACuc' // Harus diisi jika loop aktif
+                    },
+                    events: {
+                        'onReady': function(event) {
+                            event.target.playVideo();
+                            setTimeout(startSlideshow, 2000); // Mulai slideshow setelah 2 detik
+                        }
+                    }
+                });
+            };
+        }
+
+        function startSlideshow() {
+            document.getElementById("slideshow").style.display = "block"; // Tampilkan slideshow
+            let slides = document.getElementsByClassName("slide");
+            let index = 0;
+
+            function showNextSlide() {
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[index].style.display = "block";
+                index = (index + 1) % slides.length;
+                setTimeout(showNextSlide, 3000); // Ganti gambar setiap 3 detik
+            }
+
+            showNextSlide();
+        }
+    </script>
+
+</body>
+</html>
