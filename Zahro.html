@@ -28,6 +28,7 @@
         p {
             font-size: 24px;
         }
+
         .container {
             width: 80%;
             height: 200px;
@@ -35,13 +36,18 @@
             position: relative;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7); /* Background semi-transparan agar teks terlihat */
+            margin: 0 auto; /* Agar container ada di tengah */
         }
+
         .isi {
             font-size: 24px;
-            position: absolute;
+            position: relative;
             width: 100%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             animation: scrollText 10s linear infinite;
         }
 
@@ -50,6 +56,7 @@
             color: #ff1744;
             animation: beat 1s infinite;
         }
+
         @keyframes scrollText {
             0% { transform: translateY(100%); }
             100% { transform: translateY(-100%); }
@@ -88,10 +95,10 @@
 
         /* Gaya Slideshow */
         .slideshow-container {
-            display: none; /* Awalnya disembunyikan */
-            position: absolute;
+            display: none;
+            position: relative; /* Pastikan slideshow muncul */
             max-width: 80%;
-            margin: auto;
+            margin: 20px auto;
         }
 
         .slide {
@@ -99,10 +106,11 @@
             width: 100%;
         }
 
-        img {
+        .slide img {
             width: 100%;
             border-radius: 10px;
         }
+
     </style>
 </head>
 <body>
@@ -111,9 +119,10 @@
     
     <div id="content" class="hidden">
         <h1>🌟 Assalammualaikum <br>Zahrooooo <br> ❤️ 🌟</h1>
+        
         <div class="container">
             <div class="isi">
-                <p>Sayang,</P>
+                <p>Sayang,</p>
                 <p>Ramadan telah tiba, bulan penuh berkah dan ampunan.</p>
                 <p>Semoga setiap langkahmu dalam menjalankan ibadah puasa penuh dengan keikhlasan dan cinta kepada-Nya.</p> 
                 <p>Aku selalu mendoakanmu, semoga segala doa dan harapanmu dikabulkan di bulan suci ini.</p>
@@ -121,8 +130,7 @@
                 <p>Selamat menunaikan ibadah puasa, cintaku. 💖🌙✨</p>
             </div>
         </div>
-        
-        
+
         <!-- Pemutar YouTube -->
         <div id="player"></div>
 
@@ -144,8 +152,9 @@
                 <img src="IMG_20250207_142030_372.jpg" alt="Gambar 5">
             </div>
         </div>
+
         <p class="heart">💖</p>
-        <p>Selamat Menunaikan Ibadah Puasa ya zahro</p>
+        <p>Selamat Menunaikan Ibadah Puasa ya Zahro</p>
     </div>
 
     <script>
@@ -182,6 +191,23 @@
                     }
                 });
             };
+        }
+
+        function startSlideshow() {
+            document.getElementById("slideshow").style.display = "block";
+            let slides = document.getElementsByClassName("slide");
+            let index = 0;
+
+            function showNextSlide() {
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[index].style.display = "block";
+                index = (index + 1) % slides.length;
+                setTimeout(showNextSlide, 3000);
+            }
+
+            showNextSlide();
         }
     </script>
 
