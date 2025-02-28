@@ -33,11 +33,15 @@
             height: 200px;
             overflow: hidden;
             position: relative;
+            background: rgba(255, 255, 255, 0.8); /* Tambahkan latar belakang semi-transparan */
+            padding: 20px;
+            border-radius: 10px;
         }
         .isi {
             font-size: 24px;
             position: absolute;
-            white-space: nowrap;
+            width: 100%;
+            text-align: center;
             animation: scrollText 10s linear infinite;
         }
 
@@ -107,14 +111,17 @@
     
     <div id="content" class="hidden">
         <h1>🌟 Assalammualaikum <br>Zahrooooo <br> ❤️ 🌟</h1>
-            <div id="container" class="isi">
+        <div class="container">
+            <div class="isi">
                 <p>Sayang,</P>
                 <p>Ramadan telah tiba, bulan penuh berkah dan ampunan.</p>
                 <p>Semoga setiap langkahmu dalam menjalankan ibadah puasa penuh dengan keikhlasan dan cinta kepada-Nya.</p> 
                 <p>Aku selalu mendoakanmu, semoga segala doa dan harapanmu dikabulkan di bulan suci ini.</p>
                 <p>Tetaplah menjadi cahaya dalam hidupku, seperti bulan Ramadan yang menerangi hati dengan kedamaian.</p> 
             </div>
+        </div>
         <p>Selamat menunaikan ibadah puasa, cintaku. 💖🌙✨</p>
+        
         <!-- Pemutar YouTube -->
         <div id="player"></div>
 
@@ -174,23 +181,6 @@
                     }
                 });
             };
-        }
-
-        function startSlideshow() {
-            document.getElementById("slideshow").style.display = "block";
-            let slides = document.getElementsByClassName("slide");
-            let index = 0;
-
-            function showNextSlide() {
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slides[index].style.display = "block";
-                index = (index + 1) % slides.length;
-                setTimeout(showNextSlide, 3000);
-            }
-
-            showNextSlide();
         }
     </script>
 
