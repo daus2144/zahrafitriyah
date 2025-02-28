@@ -15,6 +15,10 @@
             padding: 0;
         }
 
+        .hidden {
+            display: none;
+        }
+
         h1 {
             margin-top: 50px;
             font-size: 48px;
@@ -82,41 +86,46 @@
 </head>
 <body>
 
-    <h1>🌟 Assalammualaikum <br>Zahrooooo <br> ❤️ 🌟</h1>
-    <p>Semangat yahh buat Proposal Skripsinya 😊</p>
+    <button id="loveButton" class="button-love" onclick="showContent()">Klik untuk lanjutkan</button>
     
-    <!-- Pemutar YouTube -->
-    <div id="player"></div>
+    <div id="content" class="hidden">
+        <h1>🌟 Assalammualaikum <br>Zahrooooo <br> ❤️ 🌟</h1>
+        <p>Semangat yahh buat Proposal Skripsinya 😊</p>
+        
+        <!-- Pemutar YouTube -->
+        <div id="player"></div>
 
-    <!-- Slideshow -->
-    <div class="slideshow-container" id="slideshow">
-        <div class="slide">
-    <img src="IMG_20250222_133106_183.jpg" alt="Gambar 1">
-</div>
-<div class="slide">
-    <img src="IMG-20250202-WA0114.jpg" alt="Gambar 2">
-</div>
-<div class="slide">
-    <img src="IMG_20250215_123623_414.jpg" alt="Gambar 3">
-</div>
-<div class="slide">
-    <img src="IMG_20241019_200308_538.jpg" alt="Gambar 4">
-</div>
-<div class="slide">
-    <img src="IMG_20250207_142030_372.jpg" alt="Gambar 5">
-</div>
+        <!-- Slideshow -->
+        <div class="slideshow-container" id="slideshow">
+            <div class="slide">
+                <img src="IMG_20250222_133106_183.jpg" alt="Gambar 1">
+            </div>
+            <div class="slide">
+                <img src="IMG-20250202-WA0114.jpg" alt="Gambar 2">
+            </div>
+            <div class="slide">
+                <img src="IMG_20250215_123623_414.jpg" alt="Gambar 3">
+            </div>
+            <div class="slide">
+                <img src="IMG_20241019_200308_538.jpg" alt="Gambar 4">
+            </div>
+            <div class="slide">
+                <img src="IMG_20250207_142030_372.jpg" alt="Gambar 5">
+            </div>
+        </div>
+        <p class="heart">💖</p>
     </div>
-<p class="heart">💖</p>
-<button id="loveButton" class="button-love" onclick="startMusic()">Klik untuk lanjutkan</button>
+
     <script>
+        function showContent() {
+            document.getElementById("loveButton").style.display = "none";
+            document.getElementById("content").classList.remove("hidden");
+            startMusic();
+        }
+
         function startMusic() {
-            // Tampilkan pesan cinta
             alert('Aku cinta kamu selamanya! ❤️');
 
-            // Hilangkan tombol setelah diklik
-            document.getElementById("loveButton").style.display = "none";
-
-            // Load YouTube API
             var tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -124,20 +133,19 @@
 
             var player;
 
-            // Fungsi yang dipanggil setelah API YouTube siap
             window.onYouTubeIframeAPIReady = function() {
                 player = new YT.Player('player', {
-                    videoId: 'o25_Tn8BnFM', // ID Video YouTube
+                    videoId: 'o25_Tn8BnFM',
                     playerVars: {
                         'autoplay': 1,
-                        'mute': 0, // Suara langsung nyala
-                        'loop': 1, // Ulangi terus
-                        'playlist': 'o25_Tn8BnFM' // Harus diisi jika loop aktif
+                        'mute': 0,
+                        'loop': 1,
+                        'playlist': 'o25_Tn8BnFM'
                     },
                     events: {
                         'onReady': function(event) {
                             event.target.playVideo();
-                            setTimeout(startSlideshow, 2000); // Mulai slideshow setelah 2 detik
+                            setTimeout(startSlideshow, 2000);
                         }
                     }
                 });
@@ -145,7 +153,7 @@
         }
 
         function startSlideshow() {
-            document.getElementById("slideshow").style.display = "block"; // Tampilkan slideshow
+            document.getElementById("slideshow").style.display = "block";
             let slides = document.getElementsByClassName("slide");
             let index = 0;
 
@@ -155,7 +163,7 @@
                 }
                 slides[index].style.display = "block";
                 index = (index + 1) % slides.length;
-                setTimeout(showNextSlide, 3000); // Ganti gambar setiap 3 detik
+                setTimeout(showNextSlide, 3000);
             }
 
             showNextSlide();
